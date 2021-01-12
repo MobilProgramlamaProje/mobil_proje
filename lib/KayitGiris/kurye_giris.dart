@@ -91,19 +91,6 @@ class KuryeGiris extends StatelessWidget {
                   ),
                 ),
 
-
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Text("Hemen Aramıza Katıl"),
-                    Text(" Kayıt Ol", style: TextStyle(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 18,
-
-                    ),)
-                  ],
-                ),
-
                 Container(
                   padding: EdgeInsets.only(top: 100),
                   height: 200,
