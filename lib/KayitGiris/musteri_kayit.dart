@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:mobil_proje/KayitGiris/musteri_giris.dart';
+
+
 
 class MusteriKayit extends StatelessWidget {
   @override
@@ -31,7 +34,7 @@ class MusteriKayit extends StatelessWidget {
             children: <Widget>[
               Column(
                 children: <Widget>[
-                  Text("Kayıt Ol",
+                  Text("Müşteri Kayıt Ol",
                     style: TextStyle(
                       fontSize: 30,
                       fontWeight: FontWeight.bold,
@@ -74,7 +77,7 @@ class MusteriKayit extends StatelessWidget {
                   minWidth: double.infinity,
                   height: 60,
                   onPressed: () {},
-                  color: Color(0xff0095FF),
+                  color: Colors.red,
                   elevation: 0,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(50),
@@ -97,14 +100,32 @@ class MusteriKayit extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Text("Already have an account?"),
-                  Text(" Login", style:TextStyle(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 18
-                  ),
-                  )
+
+                  Text("Zaten Üye Misin?", style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 15,
+
+                  ),)
                 ],
-              )
+              ),
+
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+
+                  RaisedButton(
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => MusteriGiris()));
+                    },
+                    child: const Text('Giriş Yap', style: TextStyle(fontSize: 20)),
+                    color: Colors.white,
+
+
+                  ),
+                ],
+              ),
+
+
 
 
 
