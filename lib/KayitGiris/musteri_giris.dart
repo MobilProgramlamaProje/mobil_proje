@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobil_proje/KayitGiris/musteri_kayit.dart';
+import 'package:mobil_proje/MusteriIslemleri/musteri_ana_ekran.dart';
 
 class MusteriGiris extends StatelessWidget {
   @override
@@ -74,7 +75,9 @@ class MusteriGiris extends StatelessWidget {
             child: MaterialButton(
               minWidth: double.infinity,
               height: 60,
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => MusteriAnaEkran()));
+              },
               color: Colors.red,
               elevation: 0,
               shape: RoundedRectangleBorder(
