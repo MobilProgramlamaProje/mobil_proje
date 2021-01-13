@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobil_proje/KayitGiris/yonetici_kayit.dart';
+import 'package:mobil_proje/YoneticiIslemleri/yonetici_ana_ekran.dart';
 
 class YoneticiGiris extends StatelessWidget {
   @override
@@ -72,7 +73,9 @@ class YoneticiGiris extends StatelessWidget {
                     child: MaterialButton(
                       minWidth: double.infinity,
                       height: 60,
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => YoneticiAnaEkran()));
+                      },
                       color: Colors.green,
                       elevation: 0,
                       shape: RoundedRectangleBorder(
