@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobil_proje/KuryeIslemleri/kurye_ana_ekran.dart';
 
 class KuryeGiris extends StatelessWidget {
   @override
@@ -71,7 +72,9 @@ class KuryeGiris extends StatelessWidget {
                     child: MaterialButton(
                       minWidth: double.infinity,
                       height: 60,
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => KuryeAnaEkran()));
+                      },
                       color: Colors.deepOrange,
                       elevation: 0,
                       shape: RoundedRectangleBorder(
