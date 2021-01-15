@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mobil_proje/KayitGiris/yonetici_kayit.dart';
 import 'package:mobil_proje/YoneticiIslemleri/yonetici_ana_ekran.dart';
 
 class YoneticiGiris extends StatelessWidget {
@@ -95,37 +94,6 @@ class YoneticiGiris extends StatelessWidget {
 
                   ),
                 ),
-
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-
-                    Text(" Hemen Aramıza Katıl", style: TextStyle(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 15,
-
-                    ),)
-                  ],
-                ),
-
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-
-                    RaisedButton(
-                      onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => YoneticiKayit()));
-                      },
-                      child: const Text('Kayıt ol', style: TextStyle(fontSize: 20)),
-                      color: Colors.white,
-
-
-                    ),
-                  ],
-                ),
-
-
-
 
 
                 Container(
