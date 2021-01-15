@@ -1,184 +1,149 @@
 import 'package:flutter/material.dart';
 import 'package:mobil_proje/KayitGiris/musteri_giris.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
+class MusteriKayit extends StatefulWidget {
+  @override
+  _MusteriKayitState createState() => _MusteriKayitState();
+}
 
+class _MusteriKayitState extends State<MusteriKayit> {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
-class MusteriKayit extends StatelessWidget {
+  bool _success = true;
+  String _message;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: Colors.white,
       appBar: AppBar(
-        elevation: 0,
         brightness: Brightness.light,
         backgroundColor: Colors.white,
         leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: Icon(Icons.arrow_back_ios,
-            size: 20,
-            color: Colors.black,),
+        onPressed: () {
+      Navigator.pop(context);
+    },
+    icon: Icon(Icons.arrow_back_ios,
+    size: 20,
+    color: Colors.black,),),
+        title: Text("Müşetri Kayıt Ol",
+      style: TextStyle(
+        fontSize: 30,
+        fontWeight: FontWeight.bold,
+          color:Colors.grey[700]
+      ),),),
 
-
-        ),
-      ),
-      body: SingleChildScrollView(
-        child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 40),
-          height: MediaQuery.of(context).size.height - 50,
-          width: double.infinity,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              Column(
-                children: <Widget>[
-                  Text("Müşteri Kayıt Ol",
-                    style: TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
-
-                    ),),
-                  SizedBox(height: 20,),
-                  Text("Ücretsiz Bir Hesap Oluşturun",
-                    style: TextStyle(
-                        fontSize: 15,
-                        color:Colors.grey[700]),)
-
-
-                ],
-              ),
-              Column(
-                children: <Widget>[
-                  inputFile(label: "Kullanıcı Adı"),
-                  inputFile(label: "Email"),
-                  inputFile(label: "Şifre", obscureText: true),
-                  inputFile(label: "Şifre Tekrar", obscureText: true),
-                ],
-              ),
-              Container(
-                padding: EdgeInsets.only(top: 3, left: 3),
-                decoration:
-                BoxDecoration(
-                    borderRadius: BorderRadius.circular(50),
-                    border: Border(
-                      bottom: BorderSide(color: Colors.black),
-                      top: BorderSide(color: Colors.black),
-                      left: BorderSide(color: Colors.black),
-                      right: BorderSide(color: Colors.black),
-
-
-
-                    )
-
-                ),
-                child: MaterialButton(
-                  minWidth: double.infinity,
-                  height: 60,
-                  onPressed: () {},
-                  color: Colors.red,
-                  elevation: 0,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(50),
-
-                  ),
-                  child: Text(
-                    "Kayıt Ol", style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 18,
-                    color: Colors.white,
-
-                  ),
-                  ),
-
-                ),
-
-
-
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-
-                  Text("Zaten Üye Misin?", style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 15,
-
-                  ),)
-                ],
-              ),
-
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-
-                  RaisedButton(
-                    onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => MusteriGiris()));
+      body: Form(
+        key: _formKey,
+        child: Card(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  //? E-Mail
+                  TextFormField(
+                    controller: _emailController,
+                    decoration: const InputDecoration(labelText: "E-Mail"),
+                    validator: (String mail) {
+                      if (mail.isEmpty) {
+                        return "Lütfen bir mail yazın";
+                      }
+                      return null;
                     },
-                    child: const Text('Giriş Yap', style: TextStyle(fontSize: 20)),
-                    color: Colors.white,
+                  ),
+                  //? Şifre
+                  TextFormField(
+                    controller: _passwordController,
+                    decoration: const InputDecoration(labelText: "Şifre"),
+                    validator: (String password) {
+                      if (password.isEmpty) {
+                        return "Lütfen bir şifre yazın";
+                      }
+                      return null;
+                    },
+                    obscureText: true, //! Şifrenin görünmesini engeller.
+                  ),
+                  //? Kayıt ol buttonu
+                  Container(
+                    padding: const EdgeInsets.symmetric(vertical: 16.0),
+                    alignment: Alignment.center,
+                    child: MaterialButton(
+                      minWidth: double.infinity,
+                      height: 60,
+                      onPressed: () async {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => MusteriGiris()));
+                        if (_formKey.currentState.validate()) {
+                          _register();
+                        }
+                      },
+                      color: Colors.green,
+                      elevation: 0,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(50),
+                      ),
+                      child: Text(
+                        "Kayıt Ol", style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 18,
+                        color: Colors.white,
 
-
+                      ),
+                      ),
+                    ),
+                  ),
+                  //? Geri bildirim
+                  Container(
+                    alignment: Alignment.center,
+                    child: Text(_success == null ? '' : _message ?? ''),
                   ),
                 ],
               ),
-
-
-
-
-
-            ],
-
+            ),
           ),
-
-
         ),
-
       ),
-
     );
   }
-}
 
+  @override
+  void dispose() {
+    //! Widget kapatıldığında controllerları temizle
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
 
-
-// we will be creating a widget for text field
-Widget inputFile({label, obscureText = false})
-{
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: <Widget>[
-      Text(
-        label,
-        style: TextStyle(
-            fontSize: 15,
-            fontWeight: FontWeight.w400,
-            color:Colors.black87
-        ),
-
-      ),
-      SizedBox(
-        height: 5,
-      ),
-      TextField(
-        obscureText: obscureText,
-        decoration: InputDecoration(
-            contentPadding: EdgeInsets.symmetric(vertical: 0,
-                horizontal: 10),
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-                  color: Colors.grey[400]
-              ),
-
-            ),
-            border: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.grey[400])
-            )
-        ),
-      ),
-      SizedBox(height: 10,)
-    ],
-  );
+  // Kayıt işlemi için
+  void _register() async {
+    try {
+      final User user = (await _auth.createUserWithEmailAndPassword(
+        email: _emailController.text,
+        password: _passwordController.text,
+      ))
+          .user;
+      if (user != null) {
+        setState(() {
+          _success = true;
+          _message = "Kayıt başarılı ${user.email}";
+        });
+      } else {
+        setState(() {
+          _success = false;
+          _message = "Kayıt başarısız.";
+        });
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+      setState(() {
+        _success = false;
+        _message = "Kayıt başarısız.\n\n$e";
+      });
+    }
+  }
 }
