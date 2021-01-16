@@ -7,11 +7,11 @@ class YoneticiAnaEkran extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.green[700],
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text('Yönetici Ekranı'),
         centerTitle: true,
-        backgroundColor: Colors.grey[850],
+        backgroundColor: Colors.green,
         elevation: 0.0,
         brightness: Brightness.light,
         leading: IconButton(
@@ -25,6 +25,7 @@ class YoneticiAnaEkran extends StatelessWidget {
           ),
         ),
       ),
+
       body: Container(
         height: MediaQuery.of(context).size.height,
         width: double.infinity,
@@ -35,6 +36,7 @@ class YoneticiAnaEkran extends StatelessWidget {
             Column(
               children: <Widget>[
                 // the login button
+                SizedBox(height:20),
                 MaterialButton(
                   minWidth: 300,
                   height: 60,
@@ -81,7 +83,7 @@ class YoneticiAnaEkran extends StatelessWidget {
                     ),
                   ),
                 ),
-
+                SizedBox(height:20),
                 MaterialButton(
                   minWidth: 300,
                   height: 60,
@@ -103,6 +105,39 @@ class YoneticiAnaEkran extends StatelessWidget {
                         fontWeight: FontWeight.w600,
                         fontSize: 18
                     ),
+                  ),
+                ),
+                SizedBox(height:20),
+                MaterialButton(
+                  minWidth: 300,
+                  height: 60,
+                  onPressed: () {
+
+                  },
+                  // defining the shape
+                  shape: RoundedRectangleBorder(
+                      side: BorderSide(
+                          color: Colors.black
+                      ),
+                      borderRadius: BorderRadius.circular(50)
+                  ),
+                  child: Text(
+                    "Siparişler Nerede?",
+                    style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 18
+                    ),
+                  ),
+                ),
+                Container(
+                  height: MediaQuery
+                      .of(context)
+                      .size
+                      .height / 3,
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage("assets/yonetici2.png")
+                      )
                   ),
                 ),
               ],

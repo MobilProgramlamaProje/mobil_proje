@@ -50,7 +50,7 @@ class MusteriGiris extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 40),
           child: Column(
             children: <Widget>[
-              inputFile(label: "Kullanıcı Adı"),
+              inputFile(label: "E Mail"),
               inputFile(label: "Şifre", obscureText: true)
             ],
           ),

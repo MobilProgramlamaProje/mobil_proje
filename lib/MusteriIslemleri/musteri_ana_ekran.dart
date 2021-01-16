@@ -6,11 +6,11 @@ class MusteriAnaEkran extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.red,
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text('Müşteri Ekranı'),
         centerTitle: true,
-        backgroundColor: Colors.grey[850],
+        backgroundColor: Colors.green,
         elevation: 0.0,
         brightness: Brightness.light,
         leading: IconButton(
@@ -20,7 +20,7 @@ class MusteriAnaEkran extends StatelessWidget {
           icon: Icon(
             Icons.arrow_back_ios,
             size: 20,
-            color: Colors.black,
+            color: Colors.blue,
           ),
         ),
       ),
@@ -34,6 +34,19 @@ class MusteriAnaEkran extends StatelessWidget {
             Column(
               children: <Widget>[
                 // the login button
+                SizedBox(height:80),
+                Container(
+                  height: MediaQuery
+                      .of(context)
+                      .size
+                      .height / 3,
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage("assets/musteri.png")
+                      )
+                  ),
+                ),
+                SizedBox(height:80),
                 MaterialButton(
                   minWidth: 300,
                   height: 60,
@@ -80,6 +93,7 @@ class MusteriAnaEkran extends StatelessWidget {
                     ),
                   ),
                 ),
+
               ],
             )
           ],
