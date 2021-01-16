@@ -4,7 +4,7 @@ class YoneticiKuryeler extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.green[700],
+        backgroundColor: Colors.white,
         appBar: AppBar(
           title: Text('Kurye Ekranı'),
           centerTitle: true,
