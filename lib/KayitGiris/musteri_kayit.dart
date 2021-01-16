@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mobil_proje/KayitGiris/musteri_giris.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+
 class MusteriKayit extends StatefulWidget {
   @override
   _MusteriKayitState createState() => _MusteriKayitState();
@@ -25,18 +26,18 @@ class _MusteriKayitState extends State<MusteriKayit> {
         brightness: Brightness.light,
         backgroundColor: Colors.white,
         leading: IconButton(
-        onPressed: () {
-      Navigator.pop(context);
-    },
-    icon: Icon(Icons.arrow_back_ios,
-    size: 20,
-    color: Colors.black,),),
-        title: Text("Müşetri Kayıt Ol",
-      style: TextStyle(
-        fontSize: 30,
-        fontWeight: FontWeight.bold,
-          color:Colors.grey[700]
-      ),),),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(Icons.arrow_back_ios,
+            size: 20,
+            color: Colors.black,),),
+        title: Text("Müşteri Kayıt Ol",
+          style: TextStyle(
+              fontSize: 30,
+              fontWeight: FontWeight.bold,
+              color:Colors.grey[700]
+          ),),),
 
       body: Form(
         key: _formKey,
@@ -45,8 +46,21 @@ class _MusteriKayitState extends State<MusteriKayit> {
             padding: const EdgeInsets.all(16.0),
             child: SingleChildScrollView(
               child: Column(
+
                 children: [
+                  Container(
+                    height: MediaQuery
+                        .of(context)
+                        .size
+                        .height / 3,
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage("assets/musterikayit.jpg")
+                        )
+                    ),
+                  ),
                   //? E-Mail
+                  SizedBox(height:10),
                   TextFormField(
                     controller: _emailController,
                     decoration: const InputDecoration(labelText: "E-Mail"),

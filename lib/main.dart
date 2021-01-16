@@ -40,7 +40,7 @@ class HomePage extends StatelessWidget {
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.blue[700],
-                      fontSize: 40,
+                      fontSize: 32,
 
                     ),
 
@@ -52,7 +52,7 @@ class HomePage extends StatelessWidget {
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.blueAccent[700],
-                      fontSize: 20,
+                      fontSize: 18,
 
                     ),)
                 ],
@@ -115,7 +115,7 @@ class HomePage extends StatelessWidget {
                       ),
                     ),
                   ),
-
+                  SizedBox(height:18),
                   MaterialButton(
                     minWidth: double.infinity,
                     height: 60,
