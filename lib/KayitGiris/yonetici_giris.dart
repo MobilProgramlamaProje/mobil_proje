@@ -1,7 +1,18 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:mobil_proje/YoneticiIslemleri/yonetici_ana_ekran.dart';
 
+//final FirebaseAuth _auth = FirebaseAuth.instance;
+//FirebaseFirestore firestore = FirebaseFirestore.instance;
 class YoneticiGiris extends StatelessWidget {
+ /* final Query query = FirebaseFirestore.instance
+      .collection("kullaniciAdi")
+      .orderBy('sifre', descending: true);
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  final TextEditingController _adController = TextEditingController();
+
+  final TextEditingController _sifreController = TextEditingController();*/
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,8 +84,31 @@ class YoneticiGiris extends StatelessWidget {
                       minWidth: double.infinity,
                       height: 60,
                       onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => YoneticiAnaEkran()));
-                      },
+
+                          /*FirebaseFirestore.instance.collection("yoneticiler").get().then((snapshot) {
+                            snapshot.docs.forEach((result) {
+                              if (result.data()["kullaniciAdi"] != _adController.text.trim()) {
+                                Scaffold.of(context).showSnackBar(SnackBar(
+                                  content: Text("Id Uyuşmuyor"),
+                                ));
+                              } else if (result.data()["sifre"] !=
+                                  _sifreController.text.trim()) {
+                                Scaffold.of(context).showSnackBar(SnackBar(
+                                  content: Text("Şifre Uymuyor"),
+                                ));
+                              } else {
+                                Scaffold.of(context).showSnackBar(SnackBar(
+                                  content: Text("Admin Sayfasına Hoşgeldiniz" + result.data()["kullaniciAdi"]),
+
+                                ));
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => YoneticiAnaEkran()));
+                              }
+                            });
+                          }
+                          );*/
+                           Navigator.push(context, MaterialPageRoute(builder: (context) => YoneticiAnaEkran()));
+                        },
+
                       color: Colors.green,
                       elevation: 0,
                       shape: RoundedRectangleBorder(

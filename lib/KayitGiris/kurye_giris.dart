@@ -117,7 +117,7 @@ class KuryeGiris extends StatelessWidget {
 }
 
 
-// we will be creating a widget for text field
+
 Widget inputFile({label, obscureText = false})
 {
   return Column(
