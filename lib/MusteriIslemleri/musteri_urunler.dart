@@ -1,10 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-//import 'package:mobil_proje/musteri_giris.dart';
-import 'package:firebase_core/firebase_core.dart';
 
-import 'musteri_ana_ekran.dart';
+
 final FirebaseAuth _auth = FirebaseAuth.instance;
 FirebaseFirestore firestore = FirebaseFirestore.instance;
 class MusteriUrunler extends StatelessWidget {
@@ -16,15 +14,6 @@ class MusteriUrunler extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("Urunler"),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.add),
-            onPressed: () async => showDialog(
-              context: context,
-              child: Dialog(),
-            ),
-          ),
-        ],
       ),
       body: Container(
         child: StreamBuilder(
@@ -43,7 +32,7 @@ class MusteriUrunler extends StatelessWidget {
             return ListView.builder(
               itemCount: querySnapshot.size,
               itemBuilder: (context, index) =>
-                  MovieWidget(querySnapshot.docs[index]),
+                  UrunWidget(querySnapshot.docs[index]),
             );
           },
         ),
@@ -52,10 +41,10 @@ class MusteriUrunler extends StatelessWidget {
   }
 }
 
-class MovieWidget extends StatelessWidget {
+class UrunWidget extends StatelessWidget {
   final DocumentSnapshot documentSnapshot;
 
-  const MovieWidget(this.documentSnapshot);
+  const UrunWidget(this.documentSnapshot);
 
   @override
   Widget build(BuildContext context) {
