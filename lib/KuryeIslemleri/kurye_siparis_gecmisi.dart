@@ -4,51 +4,43 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 //import 'package:mobil_proje/musteri_giris.dart';
 import 'package:firebase_core/firebase_core.dart';
-
+FirebaseFirestore firestore = FirebaseFirestore.instance;
 class KuryeSiparisGecmisi extends StatefulWidget {
+  KuryeSiparisGecmisi();
   @override
-  _KuryeSiparisGecmisiState createState() => _KuryeSiparisGecmisiState();
+  KuryeSiparisGecmisiState createState() => KuryeSiparisGecmisiState();
 }
 
-class _KuryeSiparisGecmisiState extends State<KuryeSiparisGecmisi> {
-  var gelenAdres = "";
-  var gelendurum = "";
-  siparisGetir(){
-    FirebaseFirestore.instance
-        .collection("siparisler")
-        .doc("siparis1")
-        .get()
-        .then((gelenVeri){
-      setState((){
-        gelenAdres = gelenVeri.data()['adres'];
-        gelendurum = gelenVeri.data()['durum'];
-      });
-    });
-  }
-  TextEditingController t1 = TextEditingController();
-  TextEditingController t2 = TextEditingController();
+class KuryeSiparisGecmisiState extends State<KuryeSiparisGecmisi> {
+
+  KuryeSiparisGecmisiState();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        margin: EdgeInsets.all(40),
-        child: Center(
-          child: Column(
-            children:[
-              Row(
-                children:[
-                RaisedButton(onPressed: siparisGetir),
-            ],
-              ),
-              ListTile(
-                title: Text(gelenAdres),
-                subtitle: Text(gelendurum),
-              ),
-            ],
-            ),
-          ),
-        ),
-      );
+      floatingActionButton: null,
+      body: StreamBuilder(
+          stream: firestore.collection('siparisler').snapshots(),
+          builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot){
+
+            if(!snapshot.hasData){
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+            return ListView(
+              children: snapshot.data.docs.map((document) {
+                return Center(
+                  child: Container(
+                    width: MediaQuery.of(context).size.width / 1,
+                    height: MediaQuery.of(context).size.height / 12,
+                    child: Text("  " + document['adres'] + " " +  document['durum'] ),
+                  ),
+                );
+              }).toList(),
+            );
+          }
+      ),
+    );
   }
 }
-
