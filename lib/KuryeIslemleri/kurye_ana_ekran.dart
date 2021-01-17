@@ -75,7 +75,7 @@ class KuryeAnaEkran extends StatelessWidget {
                         borderRadius: BorderRadius.circular(50)
                     ),
                     child: Text(
-                      "Geçmiş Siparişlerim",
+                      "Siparişlerim",
                       style: TextStyle(
                           fontWeight: FontWeight.w600,
                           fontSize: 18
