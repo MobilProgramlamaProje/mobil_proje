@@ -1,9 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
 
-import 'yonetici_ana_ekran.dart';
 final FirebaseAuth _auth = FirebaseAuth.instance;
 FirebaseFirestore firestore = FirebaseFirestore.instance;
 class YoneticiUrunler extends StatelessWidget {
@@ -43,7 +41,7 @@ class YoneticiUrunler extends StatelessWidget {
             return ListView.builder(
               itemCount: querySnapshot.size,
               itemBuilder: (context, index) =>
-                  MovieWidget(querySnapshot.docs[index]),
+                  UrunWidget(querySnapshot.docs[index]),
             );
           },
         ),
@@ -52,10 +50,10 @@ class YoneticiUrunler extends StatelessWidget {
   }
 }
 
-class MovieWidget extends StatelessWidget {
+class UrunWidget extends StatelessWidget {
   final DocumentSnapshot documentSnapshot;
 
-  const MovieWidget(this.documentSnapshot);
+  const UrunWidget(this.documentSnapshot);
 
   @override
   Widget build(BuildContext context) {
@@ -126,10 +124,10 @@ class __DialogState extends State<_Dialog> {
               ),
               TextFormField(
                 controller: _imageController,
-                decoration: InputDecoration(labelText: "Resim"),
+                decoration: InputDecoration(labelText: "Urun Fotoğrafı"),
                 validator: (value) {
                   if (value.isEmpty) {
-                    return "Lütfen bir resim url giriniz";
+                    return "Lütfen bir ürün url giriniz";
                   }
                   return null;
                 },
@@ -138,7 +136,7 @@ class __DialogState extends State<_Dialog> {
                 color: Colors.orangeAccent,
                 onPressed: () async {
                   if (_formKey.currentState.validate()) {
-                    _saveMovie(context);
+                    _saveUrun(context);
                   }
                 },
                 child: Text("Kaydet"),
@@ -150,7 +148,7 @@ class __DialogState extends State<_Dialog> {
     );
   }
 
-  void _saveMovie(BuildContext context) async {
+  void _saveUrun(BuildContext context) async {
     try {
       final String ad = _adController.text;
       final int fiyat = int.parse(_fiyatController.text);
